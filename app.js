@@ -23,7 +23,7 @@ app.use(cookieParser());
 
 
 
-app.use("/api", authRouter);
+app.use("/api/auth", authRouter);
 app.use("/api", taskRouter);
 
 
