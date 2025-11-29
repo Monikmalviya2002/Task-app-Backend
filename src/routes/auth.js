@@ -18,7 +18,7 @@ const authRouter = express.Router();
     const passwordHash = await bcrypt.hash(password,10);
 
     const existingUser = await User.findOne({ emailId });
-   if (existingUser) {
+     if (existingUser) {
     return res.status(400).json({ error: "Email already registered" });
      }
 
@@ -37,9 +37,7 @@ const authRouter = express.Router();
         res.status(400).send("ERROR: " + err.message);
      };
    
-
-
-});
+      });
 
 
    authRouter.post("/login", async(req,res)=>{
@@ -53,7 +51,8 @@ const authRouter = express.Router();
      const isPasswordValid =  await bcrypt.compare(password, user.password)
        if(isPasswordValid){
         
-        const token = await jwt.sign({_id: user._id}, "process.env.JWT_SECRET_KEY")
+     const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET_KEY);
+
 
         res.cookie("token", token);
         res.send(user);

@@ -2,6 +2,7 @@ import express from "express";
 import connectDB from "./src/config/database.js";
 import dotenv from "dotenv";
 import authRouter from "./src/routes/auth.js";
+import taskRouter from "./src/routes/task.js"
 import cors from "cors"
 import cookieParser from "cookie-parser";
 
@@ -23,6 +24,8 @@ app.use(cookieParser());
 
 
 app.use("/api", authRouter);
+app.use("/api", taskRouter);
+
 
 connectDB();
 
