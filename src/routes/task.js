@@ -52,7 +52,7 @@ import userAuth from "../middleware/auth.js";
      }
     });
 
-      // to get specific task
+      // to get for logged in user
        taskRouter.get("/task/:id", userAuth,async(req,res)=>{
          try {
               const userId = req.user._id;
@@ -78,8 +78,9 @@ import userAuth from "../middleware/auth.js";
              res.status(500).json({ message: error.message });
                 }
                 })
-
-     taskRouter.patch("/update/:id", userAuth, async (req, res) => {
+  
+      // to update the existing task
+     taskRouter.post("/update/:id", userAuth, async (req, res) => {
     try {
       const userId = req.user._id;
        const { id } = req.params;
@@ -114,7 +115,7 @@ import userAuth from "../middleware/auth.js";
 
 
           // to delete task
-      taskRouter.delete("/delete" , userAuth, async(req,res)=>{
+      taskRouter.delete("/delete/:id" , userAuth, async(req,res)=>{
          try {
           const userId = req.user._id;
            const { id } = req.params;

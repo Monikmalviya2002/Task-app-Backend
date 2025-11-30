@@ -8,8 +8,8 @@ dotenv.config();
 
 const authRouter = express.Router();
 
-
-  authRouter.post("/signup", async(req,res)=>{
+   // register a new user
+  authRouter.post("/register", async(req,res)=>{
 
     try{ 
     validateSignUpData(req);
@@ -38,7 +38,7 @@ const authRouter = express.Router();
      };
    
       });
-
+    
 
    authRouter.post("/login", async(req,res)=>{
     try{
